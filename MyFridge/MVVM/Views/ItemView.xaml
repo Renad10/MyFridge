@@ -5,7 +5,7 @@
              x:Class="MyFridge.MVVM.Views.ItemView"
              Title="ItemView">
     
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="15">
         <Label 
             x:Name="ItemTitle"
             Text="{Binding Title}"
@@ -17,13 +17,14 @@
             x:Name="ItemImage"
             Source="{Binding ImageUrl}"
             Aspect="AspectFill"
-            HeightRequest="60"
-            WidthRequest="60"/>
+            HeightRequest="180"
+            WidthRequest="180"/>
         <Label 
             x:Name="ItemDescription"
             Text="{Binding Description}"
-            HeightRequest="180"
-            WidthRequest="180"
+            FontSize="16"
+            HeightRequest="250"
+            WidthRequest="250"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

@@ -47,12 +47,11 @@ namespace MyFridge
             {
                 Title = items[0].title,
                 Description = items[0].description,
-                ImageUrl = items[0].images[0]
+                ImageUrl = items[0].images[0].Replace("http://", "https://")
             };
 
             ItemView itemView = new ItemView(viewModel);
 
-            // Navigeer naar de nieuwe pagina
             await Navigation.PushAsync(itemView);
 
         }
