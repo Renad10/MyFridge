@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyFridge.MVVM.Views.DrinkView"
+             xmlns:local="clr-namespace:MyFridge.MVVM.ViewModels"
+             Title="DrinkView">
+    <ContentPage.BindingContext>
+        <local:DrinkViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="5">
+
+            <Label 
+                Text="Drink name"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Entry x:Name="DrankNameEntry"
+                Text="{Binding DrinkName , Mode=TwoWay}"/>
+            <Label 
+                Text="Quantity"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Entry x:Name="DrinkQuantityEntry"
+                Keyboard="Numeric"
+                Text="{Binding Quantity , Mode=TwoWay}"
+                TextChanged="OnDrinkQuantityEntryTextChanged"/>
+
+            <Picker Title="Select a fridge"           
+                ItemsSource="{Binding Fridges}"
+                ItemDisplayBinding="{Binding name}"
+                SelectedItem="{Binding SelectedFridge , Mode=TwoWay}"/>
+            <StackLayout>
+                <Button x:Name="TakePhoto" 
+                        Text="Capture drink photo"
+                        Command="{Binding CaptureDrinkPhotoCommand}"/>
+                <Image x:Name="DrinkPhoto" 
+                       Source="{Binding CompleteDrinkPhotoPath,Mode=TwoWay}"
+                       IsVisible="{Binding HasPhoto}"
+                       HeightRequest="250"
+                       VerticalOptions="FillAndExpand"/>
+                
+            </StackLayout>
+            
+            
+
+
+        <Button x:Name="AddButton" Text="Add" Command="{Binding AddOrUpdateCommand}" Clicked="AddButton_Clicked"/>
+        <Button x:Name="DeleteButton" Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red"/>
+            
+            
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+        
+    
+</ContentPage>
