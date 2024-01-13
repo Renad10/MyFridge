@@ -30,14 +30,13 @@ public partial class QrCodeReader : ContentPage
         var first = e.Results.First();
 
         var itemsTask = UPCLogic.GetItemByUPC(first.Value.ToString());
-        var timeoutTask = Task.Delay(5000); // Timeout van 5 seconden, pas dit aan indien nodig
+        var timeoutTask = Task.Delay(5000);
 
         var completedTask = await Task.WhenAny(itemsTask, timeoutTask);
 
         if (completedTask == timeoutTask)
         {
-            // Handle timeout, e.g., show a message or take appropriate action
-            isProcessingBarcode = false; // Reset de boolean als er een timeout is opgetreden
+            isProcessingBarcode = false; 
             return;
         }
 
@@ -45,7 +44,7 @@ public partial class QrCodeReader : ContentPage
 
         if (items == null || items.Count == 0)
         {
-            isProcessingBarcode = false; // Reset de boolean als er geen items zijn gevonden
+            isProcessingBarcode = false;
             return;
         }
 
@@ -62,59 +61,7 @@ public partial class QrCodeReader : ContentPage
 
             await Navigation.PushAsync(itemView);
 
-            isProcessingBarcode = false; // Reset de boolean nadat de view is gepusht
+            isProcessingBarcode = false;
         });
     }
-
-
-    //private bool barcodeProcessed = false;
-
-    //private async void barcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
-    //{
-    //    if (barcodeProcessed || e.Results == null || !e.Results.Any())
-    //        return;
-
-    //    barcodeProcessed = true;
-
-    //    var first = e.Results.First();
-
-    //    var itemsTask = UPCLogic.GetItemByUPC(first.Value.ToString());
-    //    var timeoutTask = Task.Delay(5000); 
-
-    //    var completedTask = await Task.WhenAny(itemsTask, timeoutTask);
-
-    //    if (completedTask == timeoutTask)
-    //    {
-    //        barcodeProcessed = false; 
-    //        return;
-    //    }
-
-    //    var items = itemsTask.Result;
-
-    //    if (items == null || items.Count == 0)
-    //    {
-    //        barcodeProcessed = false; 
-    //        return;
-    //    }
-
-    //    Dispatcher.DispatchAsync(async () =>
-    //    {
-    //        ItemViewModel viewModel = new ItemViewModel
-    //        {
-    //            Title = items[0].title,
-    //            Description = items[0].description,
-    //            ImageUrl = items[0].images[0].Replace("http://", "https://")
-    //        };
-
-    //        ItemView itemView = new ItemView(viewModel);
-
-    //        await Navigation.PushAsync(itemView);
-
-
-    //        barcodeProcessed = false;
-    //    });
-    //}
-
-
-
 }

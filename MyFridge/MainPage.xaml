@@ -10,14 +10,10 @@
             VerticalOptions="Center">
 
             <Button x:Name="GoToFridges" Text="Add Fridge" Clicked="GoToFridges_Clicked"/>
-
             <Button x:Name="GoToDrinks" Text="Add Drink" Clicked="GoToDrinks_Clicked"/>
-
             <Button x:Name="AllFridges" Text="All Fridges" Clicked="AllFridges_Clicked"/>
             <Button x:Name="GoToQrPage" Text="Go to qr scanner" Clicked="GoToQrPage_Clicked"/>
-            <Button x:Name="Test" Text="Test" Clicked="Test_Clicked"/>
             
-
         </VerticalStackLayout>
     </ScrollView>
 

@@ -18,13 +18,11 @@ public partial class AllFridgesView : ContentPage
     {
         string result = await DisplayPromptAsync("Quantity" ,"Enter the quantity");
 
-        // Controleer of de invoer geldig is voordat de commando wordt uitgevoerd
+        
         if (int.TryParse(result, out int quantity))
-        {
-            // Pas de hoeveelheid aan in de viewmodel
+        {            
             _fridgeViewModel.SelectedDrink.quantity -= quantity;
 
-            // Roep de ICommand.Execute-methode aan
             if (_fridgeViewModel.ChangeDrinkQuantityCommand.CanExecute(null))
             {
                 _fridgeViewModel.ChangeDrinkQuantityCommand.Execute(null);
@@ -32,7 +30,6 @@ public partial class AllFridgesView : ContentPage
         }
         else
         {
-            // Geef een foutmelding weer of voer andere logica uit voor ongeldige invoer
             if (result != null)
             {
                 await DisplayAlert("Error", "Invalid quantity input", "OK");

@@ -27,12 +27,6 @@ namespace MyFridge
             
             Navigation.PushAsync(new AllFridgesView());
         }
-
-        private void BlackCat_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new BlackCatPage());
-        }
-
         private void GoToQrPage_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new QrCodeReader());
@@ -54,11 +48,6 @@ namespace MyFridge
 
             await Navigation.PushAsync(itemView);
 
-        }
-
-        private void GotoBalck_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new BlackCatPage());
         }
     }
 }

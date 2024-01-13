@@ -13,7 +13,6 @@ namespace MyFridge.MVVM.ViewModels
     public class FridgeViewModel : INotifyPropertyChanged
     {
         private List<Fridge> _fridges;
-        //private List<Drink> _drinks;
         private string _fridgeName;
         private Fridge _currentFridge;
         private Drink _selectedDrink;
@@ -30,20 +29,6 @@ namespace MyFridge.MVVM.ViewModels
                 }
             }
         }
-
-        //public List<Drink> Drinks
-        //{
-        //    get { return _drinks; }
-        //    set
-        //    {
-        //        if (_drinks != value)
-        //        {
-        //            _drinks = value;
-        //            OnPropertyChanged(nameof(Drinks));
-        //        }
-        //    }
-        //}
-
         public string FridgeName
         {
             get { return _fridgeName; }
@@ -69,7 +54,6 @@ namespace MyFridge.MVVM.ViewModels
                 }
             }
         }
-
         public Drink SelectedDrink
         {
             get { return _selectedDrink; }
@@ -112,14 +96,6 @@ namespace MyFridge.MVVM.ViewModels
                 Refresh();
             });
 
-            //ShowDetailsCommand = new Command(() =>
-            //{
-            //    if (CurrentFridge != null)
-            //    {
-            //        ShowDetailsPage(CurrentFridge);
-            //    }
-            //});
-
             ChangeDrinkQuantityCommand = new Command(() =>
             {
                 if (CurrentFridge != null)
@@ -134,10 +110,7 @@ namespace MyFridge.MVVM.ViewModels
                 App.DrinkRepo.DeleteEntityWithChildren(SelectedDrink);
                 Refresh();
             });
-
-
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Refresh()
@@ -145,86 +118,9 @@ namespace MyFridge.MVVM.ViewModels
             Fridges = App.FridgeRepo.GetEntitiesWithChildren();
         }
 
-        //private void ShowDetailsPage(Fridge fridge)
-        //{
-        //    Drinks = App.DrinkRepo.GetEntitiesWithChildren().Where(d => d.FridgeId == fridge.Id).ToList();
-        //    OnPropertyChanged(nameof(Drinks));
-        //}
-
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-    //public class FridgeViewModel: INotifyPropertyChanged
-    //{
-
-
-    //    public List<Fridge>? Fridges { get; set; }
-    //    public List<Drink>? Drinks { get; set; }
-    //    public string FridgeName { get; set; }  
-    //    public Fridge? CurrentFridge { get; set; }
-    //    public ICommand? AddOrUpdateCommand { get; set; }
-    //    public ICommand? DeleteCommand { get; set; }
-    //    public ICommand? ShowDetailsCommand { get; set; }
-
-
-
-    //    public FridgeViewModel()
-    //    {
-    //        Refresh();
-    //        //GetAllFridges();
-
-    //        AddOrUpdateCommand = new Command(async () =>
-    //        {
-    //            var fridge = new Fridge
-    //            {
-    //                name = FridgeName,
-    //            };
-    //            App.FridgeRepo.SaveEntity(fridge);
-    //            Console.WriteLine(App.DrinkRepo.StatusMessage);
-
-    //            Refresh();
-
-    //        });
-
-    //        DeleteCommand = new Command(() =>
-    //        {
-    //            App.FridgeRepo.DeleteEntityWithChildren(CurrentFridge);
-    //            Refresh();
-
-    //        });
-
-    //        ShowDetailsCommand = new Command(() =>
-    //        {
-    //            // Controleer of er een geselecteerde koelkast is
-    //            if (CurrentFridge != null)
-    //            {
-    //                // Roep de methode aan om de details te tonen
-    //                ShowDetailsPage(CurrentFridge);
-    //            }
-    //        });
-
-
-    //    }
-
-    //    public event PropertyChangedEventHandler PropertyChanged;
-
-    //    private void Refresh()
-    //    {
-    //        Fridges = App.FridgeRepo.GetEntitiesWithChildren();
-    //    }
-
-
-
-    //    private void ShowDetailsPage(Fridge fridge)
-    //    {
-    //        Drinks = App.DrinkRepo.GetEntitiesWithChildren().Where(d => d.FridgeId == fridge.Id).ToList();
-    //    }
-
-    //    //private void GetAllFridges()
-    //    //{
-    //    //    Fridges = App.FridgeRepo.GetEntitiesWithChildren();
-    //    //}
-    //}
 }

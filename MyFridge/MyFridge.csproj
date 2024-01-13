@@ -64,9 +64,6 @@
 	  <MauiXaml Update="MVVM\Views\AllFridgesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\BlackCatPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\DrinkView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

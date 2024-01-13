@@ -4,13 +4,7 @@
              x:Class="MyFridge.QrCodeReader"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              Title="QrCodeReader">
-
     <zxing:CameraBarcodeReaderView
         x:Name="barcodeReader"
         BarcodesDetected="barcodeReader_BarcodesDetected"/>
-
-
-
-
-
 </ContentPage>

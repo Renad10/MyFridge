@@ -20,66 +20,37 @@
         />
 
         <Label Text="Fridge details"/>
-
-        <!--<ListView x:Name="ListViewDrinks" ItemsSource="{Binding CurrentFridge.Drinks}" >
-            <ListView.ItemTemplate>
-                <DataTemplate >
-                    <TextCell 
-                        Text="{Binding Id}" Detail="{Binding name}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
         <ScrollView HeightRequest="400">
-        <CollectionView ItemsSource="{Binding CurrentFridge.Drinks}" SelectionMode="Single" SelectedItem="{Binding SelectedDrink}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2"
+            <CollectionView ItemsSource="{Binding CurrentFridge.Drinks}" SelectionMode="Single" SelectedItem="{Binding SelectedDrink}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="2"
                        Source="{Binding drinkImage}"
                        Aspect="AspectFill"
                        HeightRequest="60"
                        WidthRequest="60" />
-                        <Label Grid.Column="1"
+                            <Label Grid.Column="1"
                        Text="{Binding name}"
                        FontAttributes="Bold" />
-                        <Label Grid.Row="1"
+                            <Label Grid.Row="1"
                        Grid.Column="1"
                        Text="{Binding quantity}"
                        FontAttributes="Italic"
                        VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        </ScrollView>
-        <!--<ListView ItemsSource="{Binding CurrentFridge.Drinks}"  SelectedItem="{Binding SelectedDrink}" Margin="10">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid ColumnSpacing="10" WidthRequest="150">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition  />
-                                <ColumnDefinition  />
-                            </Grid.ColumnDefinitions>
-
-                            --><!--<Label Text="{Binding drinkImage}"/>--><!--
-                            <Image Source="{Binding drinkImage}" HeightRequest="40" WidthRequest="40"/>
-                            <Label Text="{Binding name}" Grid.Column="1" />
-                            <Label Text="{Binding quantity}" Grid.Column="2"  />
                         </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
         <Button x:Name="TakeDrinkButton" Text="Take drink" Clicked="TakeDrinkButton_Clicked"/>
         <Button x:Name="DeleteDrinkButton" Text="Delete" BackgroundColor="Red" Command="{Binding DeleteSelectedDrinkCommand}"/>
         
