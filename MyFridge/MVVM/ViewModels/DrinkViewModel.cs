@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace MyFridge.MVVM.ViewModels
 {
-    public class DrinkViewModel
+    public class DrinkViewModel:INotifyPropertyChanged
     {
         private List<Drink> _drinks;
         private string _drinkName;
@@ -45,6 +45,8 @@ namespace MyFridge.MVVM.ViewModels
                 }
             }
         }
+
+
 
         public int Quantity
         {
@@ -127,6 +129,7 @@ namespace MyFridge.MVVM.ViewModels
                     name = DrinkName,
                     FridgeId = SelectedFridge.Id,
                     quantity = Quantity,
+                    drinkImage = CompleteDrinkPhotoPath,
                 };
 
                 App.DrinkRepo.SaveEntity(drink);
@@ -145,6 +148,7 @@ namespace MyFridge.MVVM.ViewModels
 
 
             CaptureDrinkPhotoCommand = new Command(DoCaptureDrinkPhoto, () => MediaPicker.IsCaptureSupported);
+
         }
 
         private async void DoCaptureDrinkPhoto()
@@ -153,6 +157,10 @@ namespace MyFridge.MVVM.ViewModels
             {
                 var photo = await MediaPicker.CapturePhotoAsync();
                 CompleteDrinkPhotoPath = await LoadPhotoAsync(photo);
+
+                OnPropertyChanged(nameof(CompleteDrinkPhotoPath));
+                OnPropertyChanged(nameof(HasPhoto));
+               
                 Console.WriteLine("Drink Pthot Captured" + CompleteDrinkPhotoPath);
             }
             catch (Exception ex)
@@ -172,7 +180,7 @@ namespace MyFridge.MVVM.ViewModels
                 {
                     drinkPhotoPath = value;
                     HasPhoto = !string.IsNullOrEmpty(value);
-                    //OnPropertyChanged(nameof(CompleteDrinkPhotoPath));
+                    OnPropertyChanged(nameof(CompleteDrinkPhotoPath)); 
                 }
             }
         }
@@ -185,7 +193,7 @@ namespace MyFridge.MVVM.ViewModels
                 if (_hasPhoto != value)
                 {
                     _hasPhoto = value;
-                    //OnPropertyChanged(nameof(HasPhoto));
+                    OnPropertyChanged(nameof(HasPhoto));
                 }
             }
         }
@@ -205,8 +213,8 @@ namespace MyFridge.MVVM.ViewModels
         {
             var stream = photo.OpenReadAsync().Result;
             byte[] imagedata;
-            
-            using(MemoryStream ms = new MemoryStream())
+
+            using (MemoryStream ms = new MemoryStream())
             {
                 stream.CopyTo(ms);
                 imagedata = ms.ToArray();
@@ -219,12 +227,12 @@ namespace MyFridge.MVVM.ViewModels
 
             }
 
-            var drinkFileName = Guid.NewGuid()+"drinkPhoto.jpg";
+            var drinkFileName = Guid.NewGuid() + "_drinkPhoto.jpg";
 
-            var newfile = Path.Combine(folderpath,drinkFileName); // The complete path of the photo
+            var newfile = Path.Combine(folderpath, drinkFileName); // The complete path of the photo
 
             using (var stream2 = new MemoryStream(imagedata))
-            using(var newstream = File.OpenWrite(newfile))
+            using (var newstream = File.OpenWrite(newfile))
             {
                 await stream2.CopyToAsync(newstream);
             }
@@ -237,55 +245,6 @@ namespace MyFridge.MVVM.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        //    public List<Drink>? Drinks { get; set; }
-        //    public string DrinkName { get; set; }   
-        //    public int Quantity { get; set; }   
-        //    public int FridgeId { get; set; }   
-        //    public Fridge SelectedFridge { get; set; }  
-        //    public Drink? CurrentDrink { get; set; }
-        //    public List<Fridge> Fridges { get; set; }
-        //    public ICommand? AddOrUpdateCommand { get; set; }
-
-        //    public ICommand? DeleteCommand { get; set; }
-
-
-        //    public DrinkViewModel()
-        //    {
-        //        Refresh();
-        //        GetAllFridges();
-
-        //        AddOrUpdateCommand = new Command(async () =>
-        //        {
-        //            var drink = new Drink()
-        //            {
-        //                name = DrinkName,
-        //                FridgeId= SelectedFridge.Id, 
-        //                quantity = Quantity,
-        //            };
-
-        //            App.DrinkRepo.SaveEntity(drink);
-
-        //            Console.WriteLine(App.DrinkRepo.StatusMessage);
-        //            Refresh();
-
-
-
-        //        });
-
-        //        DeleteCommand = new Command(() =>
-        //        {
-        //            App.DrinkRepo.DeleteEntityWithChildren(CurrentDrink);
-        //            Refresh();                
-        //        });
-        //    }       
-        //    private void  Refresh()
-        //    {
-        //        Drinks = App.DrinkRepo.GetEntitiesWithChildren();
-
-        //    }
-        //    private void GetAllFridges()
-        //    {
-        //        Fridges = App.FridgeRepo.GetEntitiesWithChildren();
-        //    }
+        
     }
 }

@@ -34,23 +34,17 @@
             <StackLayout>
                 <Button x:Name="TakePhoto" 
                         Text="Capture drink photo"
-                        Command="{Binding CaptureDrinkPhotoCommand}"/>
+                        Command="{Binding CaptureDrinkPhotoCommand,Mode=TwoWay}"/>
                 <Image x:Name="DrinkPhoto" 
-                       Source="{Binding CompleteDrinkPhotoPath,Mode=TwoWay}"
+                       Source="{Binding CompleteDrinkPhotoPath}"
                        IsVisible="{Binding HasPhoto}"
                        HeightRequest="250"
                        VerticalOptions="FillAndExpand"/>
-                
+
             </StackLayout>
             
-            
-
-
         <Button x:Name="AddButton" Text="Add" Command="{Binding AddOrUpdateCommand}" Clicked="AddButton_Clicked"/>
         <Button x:Name="DeleteButton" Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red"/>
-            
-            
-            
 
         </VerticalStackLayout>
     </ScrollView>

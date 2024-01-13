@@ -12,6 +12,7 @@ namespace MyFridge.MVVM.Models
     {
         public string name { get; set; }
         public int quantity { get; set; }
+        public string drinkImage {  get; set; } 
 
         [ForeignKey(typeof(Fridge))]
         public int FridgeId { get; set; }

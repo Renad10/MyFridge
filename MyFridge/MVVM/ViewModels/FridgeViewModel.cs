@@ -85,6 +85,7 @@ namespace MyFridge.MVVM.ViewModels
 
         public ICommand AddOrUpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand DeleteSelectedDrinkCommand { get; set; }
         public ICommand ShowDetailsCommand { get; set; }
 
         public ICommand ChangeDrinkQuantityCommand { get; set; }
@@ -128,6 +129,12 @@ namespace MyFridge.MVVM.ViewModels
                     Refresh();
                 }
             });
+            DeleteSelectedDrinkCommand = new Command(() =>
+            {
+                App.DrinkRepo.DeleteEntityWithChildren(SelectedDrink);
+                Refresh();
+            });
+
 
         }
 
