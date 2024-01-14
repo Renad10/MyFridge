@@ -36,11 +36,4 @@ public partial class AllFridgesView : ContentPage
             }      
         }
     }
-
-    private void Test_Clicked(object sender, EventArgs e)
-    {
-        
-        string text = (_fridgeViewModel.SelectedDrink.quantity - 1).ToString();
-        DisplayAlert("Fout", text, "OK");
-    }
 }

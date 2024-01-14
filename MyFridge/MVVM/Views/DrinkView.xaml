@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyFridge.MVVM.Views.DrinkView"
              xmlns:local="clr-namespace:MyFridge.MVVM.ViewModels"
-             Title="DrinkView">
+             Title="Add drink">
     <ContentPage.BindingContext>
         <local:DrinkViewModel/>
     </ContentPage.BindingContext>
@@ -17,12 +17,13 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
             <Entry x:Name="DrankNameEntry"
+                   Placeholder="Enter the drink name"
                 Text="{Binding DrinkName , Mode=TwoWay}"/>
             <Label 
                 Text="Quantity"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
-            <Entry x:Name="DrinkQuantityEntry"
+            <Entry x:Name="DrinkQuantityEntry"               
                 Keyboard="Numeric"
                 Text="{Binding Quantity , Mode=TwoWay}"
                 TextChanged="OnDrinkQuantityEntryTextChanged"/>
@@ -32,8 +33,8 @@
                 ItemDisplayBinding="{Binding name}"
                 SelectedItem="{Binding SelectedFridge , Mode=TwoWay}"/>
             <StackLayout>
-                <Button x:Name="TakePhoto" 
-                        Text="Capture drink photo"
+                <Button x:Name="TakePhoto"             
+                        Text="Capture a photo"
                         Command="{Binding CaptureDrinkPhotoCommand,Mode=TwoWay}"/>
                 <Image x:Name="DrinkPhoto" 
                        Source="{Binding CompleteDrinkPhotoPath}"
@@ -42,9 +43,8 @@
                        VerticalOptions="FillAndExpand"/>
 
             </StackLayout>
-            
-        <Button x:Name="AddButton" Text="Add" Command="{Binding AddOrUpdateCommand}" Clicked="AddButton_Clicked"/>
-        <Button x:Name="DeleteButton" Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red"/>
+
+            <Button x:Name="AddButton" Text="Add" Command="{Binding AddOrUpdateCommand}" Clicked="AddButton_Clicked"/>
 
         </VerticalStackLayout>
     </ScrollView>

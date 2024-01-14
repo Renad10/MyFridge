@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyFridge.MVVM.Views.FridgeView"
              xmlns:local="clr-namespace:MyFridge.MVVM.ViewModels"
-             Title="FridgeView">
+             Title="Manage fridges">
     <ContentPage.BindingContext>
         <local:FridgeViewModel/>
     </ContentPage.BindingContext>
@@ -11,25 +11,26 @@
     <VerticalStackLayout Spacing="5">
 
         <Label 
-    Text="Fridge name"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center" />
+               Text="Fridge name"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />
         <Entry x:Name="KoelkastNameEntry"
+               Placeholder="Enter the fridge name"
                WidthRequest="200"
-       Text="{Binding FridgeName, Mode=TwoWay}"/>
+               Text="{Binding FridgeName, Mode=TwoWay}"/>
         
 
         <ListView x:Name="ListViewFridges" ItemsSource="{Binding Fridges}" SelectedItem="{Binding CurrentFridge}" HorizontalOptions="Center">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <TextCell 
-        Text="{Binding Id}" Detail="{Binding name}"/>
+                        Text="{Binding Id}" Detail="{Binding name}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button x:Name="AddButton" Text="Add" Command="{Binding AddOrUpdateCommand}" WidthRequest="200"/>
-        <Button x:Name="DeleteButton" Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" WidthRequest="200"/>
+        <Button x:Name="AddButton" Text="Add" Command="{Binding AddOrUpdateCommand}"/>
+        <Button x:Name="DeleteButton" Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="{StaticResource DeleteColor}"/>
 
     </VerticalStackLayout>
 </ContentPage>

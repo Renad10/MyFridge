@@ -43,11 +43,4 @@ public partial class DrinkView : ContentPage
         
         await toast.Show(cancellationTokenSource.Token);    
     }
-
-    private async void TestButton_Clicked(object sender, EventArgs e)
-    {
-        string result = await DisplayPromptAsync("Question 1", "What's your name?");
-
-        drinkViewModel.CurrentDrink.quantity -= int.Parse(result);
-    }
 }

@@ -17,7 +17,13 @@ namespace MyFridge.MVVM.ViewModels
         private Fridge _currentFridge;
         private Drink _selectedDrink;
 
+        public ICommand AddOrUpdateCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+        public ICommand DeleteSelectedDrinkCommand { get; set; }
+        public ICommand ChangeDrinkQuantityCommand { get; set; }
+
         public List<Fridge> Fridges
+
         {
             get { return _fridges; }
             set
@@ -66,13 +72,6 @@ namespace MyFridge.MVVM.ViewModels
                 }
             }
         }
-
-        public ICommand AddOrUpdateCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
-        public ICommand DeleteSelectedDrinkCommand { get; set; }
-        public ICommand ShowDetailsCommand { get; set; }
-
-        public ICommand ChangeDrinkQuantityCommand { get; set; }
 
         public FridgeViewModel()
         {

@@ -3,29 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyFridge.MVVM.Views.AllFridgesView"
              xmlns:local="clr-namespace:MyFridge.MVVM.ViewModels"
-             Title="AllFridgesView">
+             Title="Fridge details">
 
     <ContentPage.BindingContext>
         <local:FridgeViewModel/>
     </ContentPage.BindingContext>
 
-    
-    
-    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-
+    <VerticalStackLayout Spacing="10" HorizontalOptions="Center" Padding="10">
+        <Label Text="Choose a fridge" FontSize="15" />
         <Picker Title="Select a fridge"           
             ItemsSource="{Binding Fridges}"
             ItemDisplayBinding="{Binding name}"
             SelectedItem="{Binding CurrentFridge , Mode=TwoWay}"   
         />
 
-        <Label Text="Fridge details"/>
+        <Label Text="Fridge details" FontSize="16" FontAttributes="Bold"/>
         <ScrollView HeightRequest="400">
             <CollectionView ItemsSource="{Binding CurrentFridge.Drinks}" SelectionMode="Single" SelectedItem="{Binding SelectedDrink}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
-                            <Grid.RowDefinitions>
+                            <Grid.RowDefinitions >
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -34,25 +32,29 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Image Grid.RowSpan="2"
-                       Source="{Binding drinkImage}"
-                       Aspect="AspectFill"
-                       HeightRequest="60"
-                       WidthRequest="60" />
-                            <Label Grid.Column="1"
-                       Text="{Binding name}"
-                       FontAttributes="Bold" />
-                            <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding quantity}"
-                       FontAttributes="Italic"
-                       VerticalOptions="End" />
+                                Source="{Binding drinkImage}"
+                                Aspect="AspectFill"
+                                HeightRequest="80"
+                                WidthRequest="80" />
+                            <Label 
+                                Padding="10"
+                                Grid.Column="1"
+                                Text="{Binding name}"
+                                FontAttributes="Bold" />
+                            <Label 
+                                Padding="10"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding quantity, StringFormat='You have: {0}'}"
+                                FontAttributes="Italic"
+                                VerticalOptions="End" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
         <Button x:Name="TakeDrinkButton" Text="Take drink" Clicked="TakeDrinkButton_Clicked"/>
-        <Button x:Name="DeleteDrinkButton" Text="Delete" BackgroundColor="Red" Command="{Binding DeleteSelectedDrinkCommand}"/>
+        <Button x:Name="DeleteDrinkButton" Text="Delete" BackgroundColor="{StaticResource DeleteColor}" Command="{Binding DeleteSelectedDrinkCommand}"/>
         
     </VerticalStackLayout>
 </ContentPage>
