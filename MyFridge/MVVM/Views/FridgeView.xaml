@@ -14,7 +14,7 @@
                Text="Fridge name"
                VerticalOptions="Center" 
                HorizontalOptions="Center" />
-        <Entry x:Name="KoelkastNameEntry"
+        <Entry x:Name="FridgeNameEntry"
                Placeholder="Enter the fridge name"
                WidthRequest="200"
                Text="{Binding FridgeName, Mode=TwoWay}"/>

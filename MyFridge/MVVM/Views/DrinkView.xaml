@@ -16,7 +16,7 @@
                 Text="Drink name"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
-            <Entry x:Name="DrankNameEntry"
+            <Entry x:Name="DrinkNameEntry"
                    Placeholder="Enter the drink name"
                 Text="{Binding DrinkName , Mode=TwoWay}"/>
             <Label 
